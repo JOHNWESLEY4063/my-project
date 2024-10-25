@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form, .welcome-message {
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            flex: 1;
+            margin-left: 200px;
+            height: 350px;
+        }
+
+        .login-form h1 {
+            margin-left: 27px;
+        }
+
+        .welcome-message {
+            flex: 1;
+            background-color: #911faa;
+            text-align: center;
+            color: #ffffff;
+            margin-right: 200px;
+            height: 350px;              
+        }
+
+        .welcome-message h1 {
+            margin-top: 120px;
+        }
+
+        .welcome-message a {
+            color: #ffffff;
+            border: 1px solid #ffffff; 
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            display: inline-block; 
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 85%;
+            margin-left: 30px;
+            padding: 10px;
+            border: 1px solid #b2aeae;
+            border-radius: 5px;
+        }
+
+        .input-icons i {
+            position: absolute;
+        }
+
+        .icon {
+            margin-top: 10px;
+            color: #911faa;
+            min-width: 10px;
+            text-align: center;
+        }
+
+        input[type="submit"] {
+            background-color: #911faa;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h1>Sign Up</h1>
+            <form class="card" method="POST" action="/api/signup">
+                <div class="input-icons">
+                    <i class="fa-solid fa-user icon"></i>
+                    <input class="input-field" type="text" id="username" name="username" placeholder="Username" required>
+                </div><br>
+                <div class="input-icons">
+                    <i class="fa-solid fa-phone icon"></i>
+                    <input class="input-field" type="text" placeholder="Phone number" id="phonenumber" name="phoneNumber" required pattern="[1-9][0-9]{9}">
+                </div><br>
+                <div class="input-icons">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input class="input-field" type="password" id="password" name="password" placeholder="Password" required>
+                </div><br>
+                <div class="input-icons">
+                    <i class="fa-solid fa-lock icon"></i>
+                    <input class="input-field" type="password" placeholder="Confirm Password" id="confirmPassword" required>
+                </div><br>
+                <center>
+                    <input type="submit" class="info" onclick="return check()">
+                </center>
+            </form>
+        </div>
+        <div class="welcome-message">
+            <h1>Welcome!</h1>
+            <p>Already have an account? </p>
+            <a href="signin.html">Login</a>
+        </div>
+    </div>
+
+    <script>
+        function check() {
+            var phone = document.getElementById('phonenumber').value;
+            var phonePattern = /^[1-9][0-9]{9}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid phone number.");
+                return false;
+            }
+
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>
